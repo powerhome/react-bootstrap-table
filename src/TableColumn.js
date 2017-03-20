@@ -1,7 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Const from './Const';
+import { DragSource } from 'react-dnd';
+import RowTypes from './RowTypes';
+import rowSource from './RowSource';
 
+@DragSource(RowTypes.ROW, rowSource, (connect, monitor) => ({
+  connectDragSource: connect.dragSource()
+}))
 class TableColumn extends Component {
 
   constructor(props) {
@@ -107,7 +113,9 @@ class TableColumn extends Component {
       keyBoardNav,
       tabIndex,
       customNavStyle,
-      row
+      row,
+      dragHandle,
+      connectDragSource
     } = this.props;
 
     let { className } = this.props;
@@ -146,14 +154,20 @@ class TableColumn extends Component {
         className = `${className} default-focus-cell`;
       }
     }
-    return (
+    let columnOutput = (
       <td tabIndex={ tabIndex } style={ tdStyle }
-          title={ columnTitle }
-          className={ className }
-          { ...opts } { ...attrs }>
+        title={ columnTitle }
+        className={ className }
+        { ...opts } { ...attrs }>
         { typeof children === 'boolean' ? children.toString() : children }
       </td>
     );
+
+    if (dragHandle) {
+      columnOutput = connectDragSource(columnOutput);
+    }
+
+    return columnOutput;
   }
 }
 TableColumn.propTypes = {
@@ -171,7 +185,8 @@ TableColumn.propTypes = {
   tabIndex: PropTypes.string,
   keyBoardNav: PropTypes.oneOfType([ PropTypes.bool, PropTypes.object ]),
   customNavStyle: PropTypes.oneOfType([ PropTypes.func, PropTypes.object ]),
-  row: PropTypes.any  /* only used on custom styling for navigation */
+  row: PropTypes.any,  /* only used on custom styling for navigation */
+  onDraggedRow: PropTypes.func
 };
 
 TableColumn.defaultProps = {
