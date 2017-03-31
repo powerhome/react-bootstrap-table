@@ -1,6 +1,6 @@
 {
   "name": "@powerhome/react-bootstrap-table",
-  "version": "3.1.1",
+  "version": "4.0.0",
   "description": "It's a react table for bootstrap",
   "main": "./lib/index.js",
   "repository": {
