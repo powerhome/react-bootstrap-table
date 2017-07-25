@@ -5,7 +5,6 @@ import Modal from 'react-modal';
 // import classSet from 'classnames';
 import Const from '../Const';
 // import editor from '../Editor';
-// import Notifier from '../Notification.js';
 import InsertModal from './InsertModal';
 import InsertButton from './InsertButton';
 import DeleteButton from './DeleteButton';
@@ -310,7 +309,6 @@ class ToolBar extends Component {
     return (
       <div className='row'>
         { toolbar }
-        {/*Notifier ref='notifier' />*/}
         { modal }
       </div>
     );
