@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import editor from './Editor';
-import Notifier from './Notification.js';
+// import Notifier from './Notification.js';
 import classSet from 'classnames';
 import Const from './Const';
 
@@ -71,25 +71,25 @@ class TableEditColumn extends Component {
       const input = ts.refs.inputRef;
       const checkVal = ts.props.editable.validator(value, this.props.row);
       const responseType = typeof checkVal;
-      if (responseType !== 'object' && checkVal !== true) {
-        valid = false;
-        const toastr = this.props.beforeShowError &&
-          this.props.beforeShowError('error', checkVal, Const.CANCEL_TOASTR);
-        if (toastr) {
-          ts.refs.notifier.notice('error', checkVal, Const.CANCEL_TOASTR);
-        }
-      } else if (responseType === 'object' && checkVal.isValid !== true) {
-        valid = false;
-        const toastr = this.props.beforeShowError &&
-          this.props.beforeShowError(checkVal.notification.type,
-                                     checkVal.notification.msg,
-                                     checkVal.notification.title);
-        if (toastr) {
-          ts.refs.notifier.notice(checkVal.notification.type,
-                                  checkVal.notification.msg,
-                                  checkVal.notification.title);
-        }
-      }
+      // if (responseType !== 'object' && checkVal !== true) {
+      //   valid = false;
+      //   const toastr = this.props.beforeShowError &&
+      //     this.props.beforeShowError('error', checkVal, Const.CANCEL_TOASTR);
+      //   if (toastr) {
+      //     ts.refs.notifier.notice('error', checkVal, Const.CANCEL_TOASTR);
+      //   }
+      // } else if (responseType === 'object' && checkVal.isValid !== true) {
+      //   valid = false;
+      //   const toastr = this.props.beforeShowError &&
+      //     this.props.beforeShowError(checkVal.notification.type,
+      //                                checkVal.notification.msg,
+      //                                checkVal.notification.title);
+      //   if (toastr) {
+      //     ts.refs.notifier.notice(checkVal.notification.type,
+      //                             checkVal.notification.msg,
+      //                             checkVal.notification.title);
+      //   }
+      // }
       if (!valid) {
         // animate input
         ts.clearTimeout();
@@ -200,7 +200,7 @@ class TableEditColumn extends Component {
         className={ className }
         onClick={ this.handleClick }>
         { cellEditor }
-        <Notifier ref='notifier'/>
+        {/*<Notifier ref='notifier'/>*/}
       </td>
     );
   }
