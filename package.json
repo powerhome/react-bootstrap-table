@@ -69,7 +69,6 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
-    "@allenfang/react-toastr": "2.8.2",
     "classnames": "^2.1.2",
     "react-dnd": "^2.2.4",
     "react-dnd-html5-backend": "^2.2.4",
