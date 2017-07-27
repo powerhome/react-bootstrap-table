@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import editor from './Editor';
 import classSet from 'classnames';
-import Const from './Const';
 
 class TableEditColumn extends Component {
   constructor(props) {
@@ -61,33 +60,10 @@ class TableEditColumn extends Component {
     this.props.completeEdit(value, this.props.rowIndex, this.props.colIndex);
   }
 
-  // modified by iuculanop
-  // BEGIN
   validator(value) {
-    const ts = this;
-    let valid = true;
-    if (ts.props.editable.validator) {
-      const input = ts.refs.inputRef;
-      const checkVal = ts.props.editable.validator(value, this.props.row);
-      const responseType = typeof checkVal;
-      if (!valid) {
-        // animate input
-        ts.clearTimeout();
-        const { invalidColumnClassName, row } = this.props;
-        const className = typeof invalidColumnClassName === 'function' ?
-          invalidColumnClassName(value, row) :
-          invalidColumnClassName;
-        ts.setState({ shakeEditor: true, className });
-        ts.timeouteClear = setTimeout(() => {
-          ts.setState({ shakeEditor: false });
-        }, 300);
-        input.focus();
-        return valid;
-      }
-    }
-    return valid;
+    value;
+    return true;
   }
-  // END
 
   clearTimeout() {
     if (this.timeouteClear !== 0) {
